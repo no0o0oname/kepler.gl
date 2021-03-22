@@ -170,10 +170,10 @@ const GeoCoder = ({
 
   const onItemSelected = useCallback(
     item => {
-      let newViewport = new WebMercatorViewport(viewport);
+      const newViewport = new WebMercatorViewport(viewport);
       const {bbox, center} = item;
 
-      newViewport = bbox
+      const gotoViewport = bbox
         ? newViewport.fitBounds([
             [bbox[0], bbox[1]],
             [bbox[2], bbox[3]]
@@ -184,7 +184,7 @@ const GeoCoder = ({
             zoom: pointZoom
           };
 
-      const {longitude, latitude, zoom} = newViewport;
+      const {longitude, latitude, zoom} = gotoViewport;
 
       onSelected({...viewport, ...{longitude, latitude, zoom, transitionDuration}}, item);
 

@@ -692,6 +692,7 @@ export function histogramConstruct(domain, mappedValue, bins) {
     .domain(domain)(mappedValue)
     .map(bin => ({
       count: bin.length,
+      bin,
       x0: bin.x0,
       x1: bin.x1
     }));
