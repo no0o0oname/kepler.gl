@@ -199,7 +199,7 @@
             tooltip: '保存地图',
             label: '保存',
             iconComponent: KeplerGl.Icons.Save,
-            onClick: () => { }
+            onClick: () => { postMapJsonToParent() }
           },
         ]
       };
@@ -252,6 +252,31 @@
 
   <!-- The next script will show how to interact directly with Kepler map store -->
   <script>
+    /* the function to generate json content */
+    function getMapJson() {
+      let mapToSave = KeplerGl.KeplerGlSchema.save(store.getState().keplerGl.map)
+      // add file name if title is not provided
+      const title = mapToSave?.info?.title ?? '';
+      if (!title || !title.length) {
+        mapToSave.info.title = `keplergl_${Math.random().toString(36).substr(6)}`;
+      }
+      return mapToSave;
+    }
+
+    function postMapJsonToParent() {
+      const data = getMapJson()
+      window.parent.postMessage({ type: 'mapExported', payload: data }, '*');
+    }
+
+    // Event listener to receive messages from the parent app
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'exportMap') {
+        // Perform export or any custom operation
+        console.log('Received "exportMap" message from parent:', event.data);
+        postMapJsonToParent();
+      }
+    });
+
     /**
      * Customize map.
      * Interact with map store to customize data and behavior
