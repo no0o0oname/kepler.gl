@@ -198,6 +198,7 @@ function LayerManagerFactory(
             showDeleteDataset
             showDatasetList={!isSortByDatasetMode}
             showAddDataModal={showAddDataModal}
+            intl={intl}
           />
           <SidePanelDivider />
           <SidePanelSection>

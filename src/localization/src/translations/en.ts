@@ -160,6 +160,7 @@ export default {
     darkModeEnabled: 'Dark base map'
   },
   layerManager: {
+    datasets: 'Datasets',
     addData: 'Add Data',
     addLayer: 'Add Layer',
     layerBlending: 'Layer Blending',

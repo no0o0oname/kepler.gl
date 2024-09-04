@@ -3,6 +3,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import {WrappedComponentProps} from 'react-intl';
 import {FormattedMessage} from '@kepler.gl/localization';
 import {Add} from '../../common/icons';
 import {Button} from '../../common/styled-components';
@@ -24,7 +25,7 @@ type DatasetSectionProps = {
   updateTableColor: ActionHandler<typeof VisStateActions.updateTableColor>;
   removeDataset: ActionHandler<typeof UIStateActions.openDeleteModal>;
   showAddDataModal: () => void;
-};
+} & WrappedComponentProps;
 
 const StyledDatasetTitle = styled.div<{showDatasetList?: boolean}>`
   line-height: ${props => props.theme.sidePanelTitleLineHeight};
@@ -73,14 +74,18 @@ function DatasetSectionFactory(
       showDeleteDataset,
       removeDataset,
       showDatasetList,
-      showAddDataModal
+      showAddDataModal,
+      intl
     } = props;
     const datasetCount = Object.keys(datasets).length;
 
     return (
       <StyledDatasetSection>
         <StyledDatasetTitle showDatasetList={showDatasetList}>
-          <span>Datasets{datasetCount ? `(${datasetCount})` : ''}</span>
+          <span>
+            {intl.formatMessage({id: 'layerManager.datasets'})}
+            {datasetCount ? `(${datasetCount})` : ''}
+          </span>
           <AddDataButton onClick={showAddDataModal} isInactive={!datasetCount} />
         </StyledDatasetTitle>
         {showDatasetList && (
