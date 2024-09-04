@@ -63,6 +63,10 @@ export default {
       filter: '过滤器',
       interaction: '交互',
       basemap: '底图'
+    },
+    panelViewToggle: {
+      list: '列表展示',
+      byDataset: '按数据集展示'
     }
   },
   layer: {
@@ -144,7 +148,8 @@ export default {
     heightRange: '高度范围'
   },
   layerManager: {
-    addData: '添加数据',
+    datasets: '数据集',
+    addData: '添加数据集',
     addLayer: '添加图层',
     layerBlending: '混合图层'
   },
@@ -383,9 +388,16 @@ export default {
   },
   layerBlending: {
     title: '图层混合',
-    additive: 'additive',
-    normal: 'normal',
-    subtractive: 'subtractive'
+    additive: '叠加',
+    normal: '正常',
+    subtractive: '消减'
+  },
+  overlayBlending: {
+    title: '图层叠加底图混合方式',
+    description: '将图层与底图进行混合，两者都可见。',
+    screen: '底图变暗',
+    normal: '正常',
+    darken: '底图滤色'
   },
   columns: {
     title: '列',
